@@ -5,38 +5,56 @@ date:   2018-09-05
 published: false
 ---
 
-*Java Basics:*
-Primitive Data Types: Different from other classes - don’t have methods, can’t be null, don’t extend the master Object class
-- int / long for integer values (Ex. 12 / 15L)
-- float / double for decimals (Ex. 4.20f / 0.0)
-- boolean
-- char
-- other ones that are hardly used (byte, short)
+*Notes taken by Shreya Reddy and formatted by Aayush Tyagi*
 
-Declaring Variables: Different from other classes - don’t have methods, can’t be null, don’t extend the master Object class
-int year = 2017;
+# Java Review
+In order to learn Android development, you'll need to know Java. Although we won't go over everything Java related, we'll go through a quick refresher.
+
+## Data Types
+
+### Declaring Variables
+
+In Java, variables are declared by stating the type and then the name of the variable, and they are assigned with `=` and then the value you want to assign to it. Variables do not change types! For example,
+```java
+int yearInt = 2017;
 String str = null;
 float gpa = 4.20f;
 String year = "2017";
-- reassigning a value with a different type to variable "year" will not compile
+year = yearInt; // does not compile, can't assign int to String
+year = "2016";
 char c;
-c = ‘a’;
+c = 'a';
+```
 
-Arithmetic Operators: Unlike some languages, separation between integers and decimals
-5 / 2 returns 2
-5 / 2. returns 7.0
-'a' + 2 returns 'c'
-"Hello, " + "World"
+### Primitive Data Types
+Primitive data types store raw data in a fixed amount of space, and are always lowercase in Java. Examples include
+- `int` / `long` for integer values (Ex. `12` / `15L`)
+- `float` / `double` for decimals (Ex. `4.20f` / `0.0`)
+- `boolean`
+- `char`
+- other ones that are hardly used (`byte`, `short`)
 
-Methods: All functions belong to a class, so we call them methods
+Other non primitive data types are all children of the `Object` class, and do not directly store the values they represent (they store an address that points to the value.) As a result, using the `==` operator will usually not work, and values are instantiated to `null`, which doesn't point to anything. Attempting to invoke a method on a `null` value will raise a `NullPointerException`, or NPE.
+
+## Methods
+
+All functions belong to a class, so we call them methods. Methods must be called from an instance of a class unless they are specifically marked as `static`. Static methods must be called from the class itself (like `Math.round()`), and effectively do not belong to the object.
+
 Example of a method in Java:
-public static int addOne(int x) {
-	return x + 1;
+```java
+class Adder {
+    public static int addOne(int x) {
+        return x + 1;
+    }
 }
-
-Loops: There are 3 types
+...
+Adder.addOne(3); // returns 4
+```
+## Loops
+There are three types of loops in Java:
+```java
 for (int i = start; i < end; i += 1) {
-	//do stuff
+    //do stuff
 }
 for (Object obj : objList) {
 	//do stuff to obj
@@ -44,8 +62,11 @@ for (Object obj : objList) {
 while (condition) {
 	//do stuff
 }
+```
 
-Classes: A definition of a new type of object you want to work with. All classes extend Object.
+## Classes
+Classes are a model for a new type of object that you want to work with. Classes can be children of other classes, and can be parents of others. All classes are children of the `Object` class and therefore have the methods `hashcode()` and `toString()`. Here is an example of a simple class:
+```java
 class Rectangle extends Shape {
 	int width;
 	int height;
@@ -55,50 +76,61 @@ class Rectangle extends Shape {
 	@Override
 	public int getArea ...
 }
+```
+### Objects
+Objects are instances of the classes. While the above class is just an idea or template of a Rectangle, we can create a our own `Rectangle rect` with its own properties. 
+```java
+Rectangle rect = new Rectangle(3, 4);
+rect.getArea(); // returns 12
+```
 
-Anonymous Classes: Sometimes you want to extend an abstract class just to use it once in Java (very common in Android). These are anonymous classes.
-new AsyncTask(...) {
-	@Override
-	Void doInBackground ...
-}.execute()
+### Anonymous Classes
+Sometimes you want to extend an abstract class or interface for just a single object in Java (something very common in Android). These are called anonymous classes and have their own unique syntax.
+```java
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    void onClick(View view) {
+        // do stuff
+    }
+});
+```
 
-*Basic Git*
-What is Git?
-Git is a solution for version control - the idea that to prevent errors, development code should be kept separate from working code to prevent bugs. It also makes collaboration much easier in larger codebases.
-Despite its similarities to Google Drive, Git is not an offline storage solution, and should never be treated as one.
+# Basic Git
+## What is Git?
+Git is a solution for version control - the idea that to prevent errors, development code should be kept separate from working code to prevent bugs. It also makes collaboration much easier in larger codebases. Despite its similarities to Google Drive, Git is not an offline storage solution, and should never be treated as one.
 
-Version Control:
-- Typically a "master" or "prod" branch (a branch is a version of your code) that only contains ready to deploy features
-- Collaborators branch off a master to work on some feature
-- Two options once finished
-  - Push the code to master - might get merge conflict, have to manually resolve
-  - Submit a pull request
-- Allows people to work on different features at the same time, just pull from master regularly to keep up to date
+In version control, there is typically a master, prod, or release branch (a version of your codebase) that only contains ready to deploy features. You can branch off of this to add your own features or work on bugs, so that you can mess around while the working version of the app still exists and (more importantly) people can work on their own features in parallel.
 
-Github:
-Serves as a remote location for your git "repository". You can add collaborators, write a wiki, check branches, and manage pull requests from here.
-Typically employers will check your Github, so it's good to have your projects on Github even if you're working solo and don't need version control.
-It's not a Google Drive alternative so you shouldn't (though you can) edit code on Github.
+Once you're done with your code and you think it's good to put (or *merge*) into master, you have two options:
+1. Push your code to master - you may get a merge conflict which you have to manually resolve, but Git can handle minor changes.
+2. Make a pull request - ask for someone to review it and when everyone's good to go, you or someone else with write access can merge it in.
+
+Git also allows you to manage versions on a single branch too, every time you push something to Github, it's stored as a diff, only remembering the changes you made from the last version (or *commit*). You can revert to any commit at any time, a useful feature if you make a mistake.
+
+## Github
+Serves as a remote location for your git "repository". You can add collaborators, write a wiki, check branches, and manage pull requests from here. Typically employers will check your Github, so it's good to have your projects on Github even if you're working solo and don't need version control. It's not a Google Drive alternative so you shouldn't (though you can) edit code on Github.
 
 Common Commands:
-git init
+- `git init`
   - Enables git commands in the current directory and all subdirectories
-git remote add origin https://github.com/…
+- `git remote add origin https://github.com/...`
   - Adds a remote location for your code called "origin" linking to the given URL. Doesn't actually interact with it here.
-git clone (-b branchName) https://github.com/…
+- `git clone (-b branchName) https://github.com/...`
   - Clones the code at the URL's master branch. To clone a specific branch, use the -b
-git checkout (-b) branchName
+- `git checkout (-b) branchName`
   - Creates and enters a new branch with your current changes with name "branchName". If the branch already exists, ignore the -b
-git add -A
+- `git add -A`
   - Saves the state of your code and makes it ready to commit
-git commit -m "first commit"
+- `git commit -m "first commit"`
   - Commits the changes with message "first commit." Commits are accessible even when more are pushed on top, so use useful messages.
-git push origin branchName
+- `git push origin branchName`
   - Pushes the commit to the specific remote at the specific branch. Push often to your branch to avoid losing code! You can also push to master, though it's better to make a pull request through Github.
-git pull origin master
+- `git pull origin master`
   - Pulls the code from master into your current code. If you're working on a feature that someone else has edited, you will have to pull and resolve any conflicts to get that code. 
 
-*Android Demo:*
+# Intro to Android
+This part will be more of a walkthrough, and we assume that you already have the latest version of Android Studio up and running. Make sure that you're able to run the demo app - a lot of times errors will pop up prompting you to install things, but they provide links for you to do so. If you run into anything unexpected, Google and StackOverflow are your friends!
+
 Create Android Project
 - Name it whatever you want
 - Pick a unique package name if you plan on launching your app on the store
