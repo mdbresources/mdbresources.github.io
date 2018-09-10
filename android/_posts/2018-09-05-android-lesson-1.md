@@ -110,7 +110,7 @@ Git also allows you to manage versions on a single branch too, every time you pu
 ## Github
 Serves as a remote location for your git "repository". You can add collaborators, write a wiki, check branches, and manage pull requests from here. Typically employers will check your Github, so it's good to have your projects on Github even if you're working solo and don't need version control. It's not a Google Drive alternative so you shouldn't (though you can) edit code on Github.
 
-Common Commands:
+## Common Commands
 - `git init`
   - Enables git commands in the current directory and all subdirectories
 - `git remote add origin https://github.com/...`
@@ -130,6 +130,14 @@ Common Commands:
 
 # Intro to Android
 This part will be more of a walkthrough, and we assume that you already have the latest version of Android Studio up and running. Make sure that you're able to run the demo app - a lot of times errors will pop up prompting you to install things, but they provide links for you to do so. If you run into anything unexpected, Google and StackOverflow are your friends!
+
+Close any projects you might have open and you should arrive at this screen:
+
+
+<img src="../assets/000.png" width="600" />
+
+
+Click on Start a new Android Project and you should arrive here:
 
 Create Android Project
 - Name it whatever you want
