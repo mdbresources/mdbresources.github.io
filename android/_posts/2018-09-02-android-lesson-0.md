@@ -71,12 +71,25 @@ Gradle is used to compile the app together and link together the Java and res fo
 There's several important features of Android Studio that need to be covered before we can get started writing any code. 
 
 ## General Shortcuts
-
-### Common Keyboard shortcuts
+These are shortcuts that can generally be used throughout the app. Any instance of `Ctrl` should be replaced with Command for Macs.
 
 ### Ctrl + Click
+This will generally take you to the declaration of whatever you are clicking. This is useful if you're looking at a method or variable, and you're not sure where to find it to see what it does. If you're at the definition, this is also useful since it shows all the places where the method / variable is being referenced. 
 
 ### Alt + Enter
+Many times, Android Studio will recognize that something is wrong, but will be reasonably confident that it knows how to fix it. For example, if a red variable is underlined in white (it needs to be imported), highlighted yellow (potentially causing bugs / is bad practice), grayed out (it's never used) then 
+
+### Other useful things
+- Refactor (rename all instances of) a variable with right click -> refactor -> rename
+- Ctrl + \[ to go back to wherever your cursor was before
+  - Ctrl + \] to move it forward
+- Ctrl + O to search through Java files
+- Ctrl + / to comment out with single line comment(s)
+  - Ctrl + Shift + / to comment out with multiline comment
+- Ctrl + F to search in file
+  - Ctrl + Shift + F to search in all files
+- Ctrl + R to find and replace in file
+  - Ctrl + Shift + R to find and replace in all files
 
 ## Layout Stuff
 
