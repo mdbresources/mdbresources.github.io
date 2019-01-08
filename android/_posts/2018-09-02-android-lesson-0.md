@@ -73,6 +73,9 @@ There's several important features of Android Studio that need to be covered bef
 ## General Shortcuts
 These are shortcuts that can generally be used throughout the app. These shortcuts are for Macs, although I'm pretty sure they exist for Windows in similar combinations.
 
+### Autocomplete
+Android Studio will offer to autocomplete anything it can. This ranges from variable names to entire code blocks. Try to utilize this as much as you can, as it can significantly speed up having to type everything out, and ensure you never make any typos.
+
 ### ⌘ + Click
 This will generally take you to the declaration of whatever you are clicking. This is useful if you're looking at a method or variable, and you're not sure where to find it to see what it does. If you're at the definition, this is also useful since it shows all the places where the method / variable is being referenced. 
 
@@ -107,10 +110,46 @@ While each layout is a single file, layouts also represent a general View to con
 - **AbsoluteLayout**: A relic of prehistoric times. No idea what they're for since they were obsolete way before I learned Android. You can find them in museums, but don't touch the glass.
 
 ### Constraint Layout editor
+<img src="../assets/007.png" width="800" />
+
+Let's try to break down what we see here step by step. You may have a second blueprint screen showing, but I like to disable that by going to the layers icon on the top left of the editor. In the **Palette**, we see all the Views available to use divided into menus. We can add something to the screen by simply dragging and dropping. In the **Component Tree**, we can see the hierarchy of the Views that we currently have. It starts out pretty simple, with a ConstraintLayout containing a sample TextView.
+
+<img src="../assets/010.png" width="500" />
+
+On the right is where it get's more interesting. The box above represents the focused view, in this case we are focused on the "Hello World!" TextView. The dots on the sides represent **constraints**, which act like springs. You can delete the constraints by clicking these dots - try deleting the bottom constraint and see the TextView rail to the top left! However, it might look a little ugly with the text actually touching the top, so we might want to add a margin by setting the top margin to 8 or 16, by clicking the 0 on top. Margins are just that though - only used to add a little padding. If you want to position things in a certain place, try using the skew bars (currently set to 50%) instead of forcing the position with large margins.
+
+The fields below the box represent common attributes (Note: for TextViews, your screen probably has a lot more stuff.) We can access even more attributes like `background` and `clickable` by clicking on "View all attributes", but most of these are intuitive, so we'll focus on the main two right now - `layout_height` and `layout_width`. There are three types of values you can put here: **wrap_content**, meaning the View will wrap whatever is in it, **match_constraint**, meaning the View will take up as much space as the constraints allow, and a fixed size, measured in **dp**, a way of measuring distances independent of the device's pixel density (e.g., 128dp). I highly recommend not using fixed sizes unless you are working with images, so that your Views will be more robust to differently sized screens.
+
+In the middle is the visual editor itself, which allows you to drag constraints from your View to another View. For example, if we want another View to be directly under this existing one, we would drag a TextView in from the Palette, drag a constraint from the top of the new View to the bottom of the old view, and add side constraints to the sides of the parent layout to center it. Don't forget to add at least one horizontal constraint and one vertical constraint to anything in a ConstraintLayout, or its position will be in an undefined location.
+
+### XML
+
+<img src="../assets/011.png" width="500" />
+
+While you can stick to the visual editor at first, eventually it might be easier to start using the text editor. XML is pretty straightforward to read and write, and we can clearly see how our attributes are attached to the Views here. In a ConstraintLayout the order of these Views doesn't matter, but be aware that in a LinearLayout, the order in the XML represents the order in the LinearLayout.
 
 ### Asset Studio
+If you're messing around with the editor and attempt to add an ImageView, you'll notice that it asks you to add a default image, and you'll also notice that all the built in icons look very ugly. Don't fret, the cooler looking icons are hidden away in the Asset Studio. If you right click the drawable folder, go to New, and select "Vector Asset", a dialog will pop up asking you what you want to add. Click on the icon next to Clip Art and you'll arrive at the Asset Studio!
+
+<img src="../assets/012.png" width="500" />
+
+There are many, many icons here and you probably won't need to make your own until you start making serious apps. In addition, as vector assets, these are defined as vectors and have infinite resolution! The color can be edited by going into its XML file and changing the color value from `#FF000000` to whatever you need.
 
 ## Java
+
+### Anonymous Classes
+While we won't be getting into any actual coding in this lesson, it's important to know a few lesser known nuances of Java Android takes advantage of. The first, and most common, is the **anonymous class**. For example, to define behavior when clicking an object, you have to pass in an object implementing the `OnClickListener` interface with an `onClick` method defined. Most of these are only used once however, and anonymous classes allow you to define these inline. Here's what I mean:
+
+```java
+findViewById(R.id.button).setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        // do stuff
+    }
+});
+
+```
+The parantheses are for instantiating the object (pass in variables if you have a constructor), and the methods are overridden in place. Seem like a lot to remember? Head into the onCreate method of your MainActivity and try typing this at the bottom of the method - not copy pasting. As you type the word "OnClickListener", Android Studio will offer to autocomplete the whole anonymous class for you! 
 
 ## Other Tools
 
