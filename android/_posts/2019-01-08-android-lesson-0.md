@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lesson 0 - Setting Up Your Environment"
+title:  "Lesson 0 - Setting Up Android Studio"
 date:   2019-01-08
 published: true
 ---
