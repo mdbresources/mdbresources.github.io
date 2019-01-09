@@ -23,7 +23,7 @@ At this screen, you can name it anything you want, but pick a reasonable (and un
 After this, you'll see another screen asking you to pick your minimum version of Android, and if you click "Help me choose" you'll see a distribution chart.
 
 
-<img src="./assets/002.png" width="500" /> <img src="../assets/003.png" width="500" />
+<img src="./assets/002.png" width="500" /> <img src="./assets/003.png" width="500" />
 
 Choosing these is a bit up to you, since as the distribution screen will show you, newer versions of Android support more features that will make your life easier as a developer, but also support fewer devices. I would recommend 19 if you're looking to support the most people, 21 if you want a lot more features than 19 but not support everyone.
 
