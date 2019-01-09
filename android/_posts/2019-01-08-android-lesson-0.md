@@ -11,25 +11,25 @@ Download Android Studio from here: https://developer.android.com/studio/. I'd re
 Close any projects you might have open and you should arrive at this screen:
 
 
-<img src="../assets/000.png" width="500" />
+<img src="./assets/000.png" width="500" />
 
 
 Click on Start a new Android Project and you should arrive here:
 
-<img src="../assets/001.png" width="500" />
+<img src="./assets/001.png" width="500" />
 
 At this screen, you can name it anything you want, but pick a reasonable (and unique!) package name if you plan on launching the app to the app store. Make sure to deselect the "Kotlin support" checkbox if you're planning on following along in Java.
 
 After this, you'll see another screen asking you to pick your minimum version of Android, and if you click "Help me choose" you'll see a distribution chart.
 
 
-<img src="../assets/002.png" width="500" /> <img src="../assets/003.png" width="500" />
+<img src="./assets/002.png" width="500" /> <img src="../assets/003.png" width="500" />
 
 Choosing these is a bit up to you, since as the distribution screen will show you, newer versions of Android support more features that will make your life easier as a developer, but also support fewer devices. I would recommend 19 if you're looking to support the most people, 21 if you want a lot more features than 19 but not support everyone.
 
 On the next "Add an Activity to Mobile" screen select "Empty Activity" and finish making the app. Try to run the app by clicking the play button up over here
 
-<img src="../assets/006.png" width="500" />
+<img src="./assets/006.png" width="500" />
 
 The app will first have to build into something executable by your Android device (which is what the hammer represents), and will probably not be able to build initially since you have to install the Software Development Kit (SDK) depending on what version of Android you're targeting. Since there are so many different SDK versions you might want to run, Android Studio doesn't come preinstalled with any, so Android Studio won't know how to build the app. It's not difficult though, since everytime a build fails because a component is not installed, the error message will provide a prompt to install whatever you're missing and you can try again. Keep attempting to run the app until it successfully shows up.
 
@@ -38,7 +38,7 @@ If you don't have a device to run the default app on, the run screen will have a
 # Android File Structure
 If you've created the project successfully, you'll be greeted with this file tree on the left (make sure you're viewing it in "Android" mode and not "Project" mode, as specified in the dropdown at the top.)
 
-<img src="../assets/005.png" width="500" />
+<img src="./assets/005.png" width="500" />
 
 It might seem daunting at first, but you only have to worry about the directories expanded in the screenshot above!
 
@@ -110,11 +110,11 @@ While each layout is a single file, layouts also represent a general View to con
 - **AbsoluteLayout**: A relic of prehistoric times. No idea what they're for since they were obsolete way before I learned Android. You can find them in museums, but don't touch the glass.
 
 ### Constraint Layout editor
-<img src="../assets/007.png" width="800" />
+<img src="./assets/007.png" width="800" />
 
 Let's try to break down what we see here step by step. You may have a second blueprint screen showing, but I like to disable that by going to the layers icon on the top left of the editor. In the **Palette**, we see all the Views available to use divided into menus. We can add something to the screen by simply dragging and dropping. In the **Component Tree**, we can see the hierarchy of the Views that we currently have. It starts out pretty simple, with a ConstraintLayout containing a sample TextView.
 
-<img src="../assets/010.png" width="500" />
+<img src="./assets/010.png" width="500" />
 
 On the right is where it get's more interesting. The box above represents the focused view, in this case we are focused on the "Hello World!" TextView. The dots on the sides represent **constraints**, which act like springs. You can delete the constraints by clicking these dots - try deleting the bottom constraint and see the TextView rail to the top left! However, it might look a little ugly with the text actually touching the top, so we might want to add a margin by setting the top margin to 8 or 16, by clicking the 0 on top. Margins are just that though - only used to add a little padding. If you want to position things in a certain place, try using the skew bars (currently set to 50%) instead of forcing the position with large margins.
 
@@ -124,14 +124,14 @@ In the middle is the visual editor itself, which allows you to drag constraints 
 
 ### XML
 
-<img src="../assets/011.png" width="500" />
+<img src="./assets/011.png" width="500" />
 
 While you can stick to the visual editor at first, eventually it might be easier to start using the text editor. XML is pretty straightforward to read and write, and we can clearly see how our attributes are attached to the Views here. In a ConstraintLayout the order of these Views doesn't matter, but be aware that in a LinearLayout, the order in the XML represents the order in the LinearLayout.
 
 ### Asset Studio
 If you're messing around with the editor and attempt to add an ImageView, you'll notice that it asks you to add a default image, and you'll also notice that all the built in icons look very ugly. Don't fret, the cooler looking icons are hidden away in the Asset Studio. If you right click the drawable folder, go to New, and select "Vector Asset", a dialog will pop up asking you what you want to add. Click on the icon next to Clip Art and you'll arrive at the Asset Studio!
 
-<img src="../assets/012.png" width="500" />
+<img src="./assets/012.png" width="500" />
 
 There are many, many icons here and you probably won't need to make your own until you start making serious apps. In addition, as vector assets, these are defined as vectors and have infinite resolution! The color can be edited by going into its XML file and changing the color value from `#FF000000` to whatever you need.
 
@@ -166,7 +166,7 @@ The Logcat is a tool that functions like `System.out` in traditional Java, excep
 ### Version Control
 Github and version control couldn't be easier with Android Studio. Take a look below to see what I mean: 
 
-<img src="../assets/013.png" width="800" />
+<img src="./assets/013.png" width="800" />
 
 In the very bottom right (cutoff the screenshot) is a menu you can use to quickly checkout an existing or new branch. While editing, additions are marked in green and removals / edits are marked in blue near the line numbers. Clicking these will allow you to see what used to be there and give you the option to revert it. Right clicking in the line numbers area and selecting "Annotate" will show you who wrote each line and when.
 
