@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Lesson 0 - Setting Up Your Environment"
-date:   2018-09-02
-published: false
+date:   2019-01-08
+published: true
 ---
 # Installing Android Studio
-lol figure it out b
+Download Android Studio from here: https://developer.android.com/studio/. I'd recommend reinstalling Android Studio if you've downloaded it a while ago, since Android Studio is difficult to update from very old versions. The installation is relatively simple.
 
 # Running your first app
 Close any projects you might have open and you should arrive at this screen:
@@ -151,10 +151,23 @@ findViewById(R.id.button).setOnClickListener(new OnClickListener() {
 ```
 The parantheses are for instantiating the object (pass in variables if you have a constructor), and the methods are overridden in place. Seem like a lot to remember? Head into the onCreate method of your MainActivity and try typing this at the bottom of the method - not copy pasting. As you type the word "OnClickListener", Android Studio will offer to autocomplete the whole anonymous class for you! 
 
+### Inheritance
+Just a heads up, inheritance is a large part of production level Java code in general. For example, if we Google "activity Android", we can see from the first result that an Activity is a ContextThemeWrapper which is a ContextWrapper which is a Context, and implements a whole bunch of interfaces. For a lot of Android, you'll mostly just be learning how to deal with these prebuilt frameworks, which methods to override and which to call.
+
+### Nullable and NonNull
+While these are a separate dependency, Android uses these annotations quite extensively to mark when parameters / return values shouldn't be null and when it's ok for them to be null. If Android Studio ever complains that a line could cause a NullPointerException, it might be because you're using a value from a Nullable method, or passing in a potentially null value to a NonNull parameter. Try to avoid these situations by using if statements to ensure null values have separate behavior.
+
 ## Other Tools
+Android Studio has a couple other tools that can take some getting used to, so here are some quick descriptions. They can be found in the bottom bar of Android Studio.
 
 ### Logcat
+The Logcat is a tool that functions like `System.out` in traditional Java, except each log message has a tag as well as the real text (the tag is usually the name of the Activity you're logging from, although it can be whatever.) There are 6 levels of logs and here they are in increasing degree: v for **Verbose** (used for little things), d for **Debug** (used for messages only to be seen when debugging), i for **Info** (used for info), w for **Warning** (used for things that are not ideal, but not an error), e for **Error** (used when something is straight up wrong), and wtf for "What a Terrible Failure" or **Assert** (used to log events that should never occur). You can filter the minimum level you want to see in the Logcat. It's also very useful to check crashes, since Android Studio will provide line numbers you can go to and provide the full stacktrace!
 
 ### Version Control
+Github and version control couldn't be easier with Android Studio. Take a look below to see what I mean: 
 
+<img src="../assets/013.png" width="800" />
 
+In the very bottom right (cutoff the screenshot) is a menu you can use to quickly checkout an existing or new branch. While editing, additions are marked in green and removals / edits are marked in blue near the line numbers. Clicking these will allow you to see what used to be there and give you the option to revert it. Right clicking in the line numbers area and selecting "Annotate" will show you who wrote each line and when.
+
+The version control tool itself is even more useful! It shows all new and changed files, and selecting the "Preview Diff" icon on the left toolbar will open up the viewer on the right, which will quickly allow you to revert changes (the little white arrow on line 116). If there's a merge conflict, this viewer will have a "Resolve conflicts" button on top which will open a GUI to accept either your changes or the existing changes, an extremely useful tool!
