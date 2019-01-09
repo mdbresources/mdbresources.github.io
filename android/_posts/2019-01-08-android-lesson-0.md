@@ -4,6 +4,8 @@ title:  "Lesson 0 - Setting Up Your Environment"
 date:   2019-01-08
 published: true
 ---
+This is just to help you get started understanding Android Studio before we dive in to actually writing code and making apps. I highly recommend following along with this article, since it'll be pretty hard to understand if you're not.
+
 # Installing Android Studio
 Download Android Studio from here: https://developer.android.com/studio/. I'd recommend reinstalling Android Studio if you've downloaded it a while ago, since Android Studio is difficult to update from very old versions. The installation is relatively simple.
 
