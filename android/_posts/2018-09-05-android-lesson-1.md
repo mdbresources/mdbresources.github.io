@@ -7,12 +7,12 @@ published: false
 
 *Notes taken by Shreya Reddy and formatted by Aayush Tyagi*
 
-# Java Review
+## Java Review
 In order to learn Android development, you'll need to know Java. Although we won't go over everything Java related, we'll go through a quick refresher.
 
-## Data Types
+### Data Types
 
-### Declaring Variables
+#### Declaring Variables
 
 In Java, variables are declared by stating the type and then the name of the variable, and they are assigned with `=` and then the value you want to assign to it. Variables do not change types! For example,
 ```java
@@ -26,7 +26,7 @@ char c;
 c = 'a';
 ```
 
-### Primitive Data Types
+#### Primitive Data Types
 Primitive data types store raw data in a fixed amount of space, and are always lowercase in Java. Examples include
 - `int` / `long` for integer values (Ex. `12` / `15L`)
 - `float` / `double` for decimals (Ex. `4.20f` / `0.0`)
@@ -36,7 +36,7 @@ Primitive data types store raw data in a fixed amount of space, and are always l
 
 Other non primitive data types are all children of the `Object` class, and do not directly store the values they represent (they store an address that points to the value.) As a result, using the `==` operator will usually not work, and values are instantiated to `null`, which doesn't point to anything. Attempting to invoke a method on a `null` value will raise a `NullPointerException`, or NPE.
 
-## Methods
+### Methods
 
 All functions belong to a class, so we call them methods. Methods must be called from an instance of a class unless they are specifically marked as `static`. Static methods must be called from the class itself (like `Math.round()`), and effectively do not belong to the object.
 
@@ -50,7 +50,7 @@ class Adder {
 ...
 Adder.addOne(3); // returns 4
 ```
-## Loops
+### Loops
 There are three types of loops in Java:
 ```java
 for (int i = start; i < end; i += 1) {
@@ -64,7 +64,7 @@ while (condition) {
 }
 ```
 
-## Classes
+### Classes
 Classes are a model for a new type of object that you want to work with. Classes can be children of other classes, and can be parents of others. All classes are children of the `Object` class and therefore have the methods `hashcode()` and `toString()`. Here is an example of a simple class:
 ```java
 class Rectangle extends Shape {
@@ -77,14 +77,14 @@ class Rectangle extends Shape {
 	public int getArea ...
 }
 ```
-### Objects
+#### Objects
 Objects are instances of the classes. While the above class is just an idea or template of a Rectangle, we can create a our own `Rectangle rect` with its own properties. 
 ```java
 Rectangle rect = new Rectangle(3, 4);
 rect.getArea(); // returns 12
 ```
 
-### Anonymous Classes
+#### Anonymous Classes
 Sometimes you want to extend an abstract class or interface for just a single object in Java (something very common in Android). These are called anonymous classes and have their own unique syntax.
 ```java
 button.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +95,8 @@ button.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-# Basic Git
-## What is Git?
+## Basic Git
+### What is Git?
 Git is a solution for version control - the idea that to prevent errors, development code should be kept separate from working code to prevent bugs. It also makes collaboration much easier in larger codebases. Despite its similarities to Google Drive, Git is not an offline storage solution, and should never be treated as one.
 
 In version control, there is typically a master, prod, or release branch (a version of your codebase) that only contains ready to deploy features. You can branch off of this to add your own features or work on bugs, so that you can mess around while the working version of the app still exists and (more importantly) people can work on their own features in parallel.
@@ -107,10 +107,10 @@ Once you're done with your code and you think it's good to put (or *merge*) into
 
 Git also allows you to manage versions on a single branch too, every time you push something to Github, it's stored as a diff, only remembering the changes you made from the last version (or *commit*). You can revert to any commit at any time, a useful feature if you make a mistake.
 
-## Github
+### Github
 Serves as a remote location for your git "repository". You can add collaborators, write a wiki, check branches, and manage pull requests from here. Typically employers will check your Github, so it's good to have your projects on Github even if you're working solo and don't need version control. It's not a Google Drive alternative so you shouldn't (though you can) edit code on Github.
 
-## Common Commands
+### Common Commands
 - `git init`
   - Enables git commands in the current directory and all subdirectories
 - `git remote add origin https://github.com/...`
@@ -128,7 +128,7 @@ Serves as a remote location for your git "repository". You can add collaborators
 - `git pull origin master`
   - Pulls the code from master into your current code. If you're working on a feature that someone else has edited, you will have to pull and resolve any conflicts to get that code. 
 
-# Intro to Android
+## Intro to Android
 This part will be more of a walkthrough, and we assume that you already have the latest version of Android Studio up and running. Make sure that you're able to run the demo app - a lot of times errors will pop up prompting you to install things, but they provide links for you to do so. If you run into anything unexpected, Google and StackOverflow are your friends!
 
 Views:
