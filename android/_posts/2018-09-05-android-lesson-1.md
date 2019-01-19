@@ -127,38 +127,44 @@ Serves as a remote location for your git "repository". You can add collaborators
   - Pushes the commit to the specific remote at the specific branch. Push often to your branch to avoid losing code! You can also push to master, though it's better to make a pull request through Github.
 - `git pull origin master`
   - Pulls the code from master into your current code. If you're working on a feature that someone else has edited, you will have to pull and resolve any conflicts to get that code. 
+- `git stash`
+  - Stashes away the current uncommitted changes you have. Very useful when you're in the middle of something that you don't want to push, since git won't allow you to pull from the remote if you have uncommitted changes. After doing what you want, you can reapply those uncommitted changes with `git stash pop`
 
-## Intro to Android
-This part will be more of a walkthrough, and we assume that you already have the latest version of Android Studio up and running. Make sure that you're able to run the demo app - a lot of times errors will pop up prompting you to install things, but they provide links for you to do so. If you run into anything unexpected, Google and StackOverflow are your friends!
+## Intro to Android - Basic Snapchat clone
+This walkthrough will assume that you have read and understood [the previous lesson](https://mdbresources.github.io/android/android-lesson-0). You should be comfortable with using the ConstraintLayout editor before you continue. To begin, create a new Github repository named "BasicSnapchatClone" (without a README). Create a new Android project with the same name, without Kotlin support, with min API 21, and one empty activity. Once it is initialized, follow the instructions to create a new git repository (git init, git add, etc).
 
-Views:
-A view is an abstract class representing an item the user can see on the screen, like a regular text field, button, image, switch, etc. Views have properties like text and color.
-Some Views are containers for other Views, like a dropdown menu or a scrolling list.
-In Android Studio, editing any layout file will show common Views on the left of the visual editor.
-Ex. TextView, ImageView, RecyclerView, CardView, FloatingActionButton
+### Views
+Open `res/layout/activity_main.xml`. In the visual editor, we can see a single TextView in the middle, and if we click on it we can View and edit its properties, including its constraints, text, font, and color. For now we'll remove this and add an **EditText**, a special type of TextView that acts as an input field. I've constrained mine to the left, right, and top of the parent, making it top and center. Take note of the "id" field - changing it won't do anything for now, but it will be important in the next part.
 
-Programmatically Updating Views:
-View v = findViewById(R.id.viewId);
-v.setOnClickListener(new OnClickListener() {//autofill});
-((TextView) findViewById(R.id.text)).setText("Hello");
+Note that in our visual editor, EditText doesn't show up, but we see many different kinds of EditTexts like "Plain Text" and "Password". For now we'll just add the plaintext field. Remove the default text and add text into the "hint" field. Run your app and play around with the EditText!
 
-Layouts:
-A specific View that defines how the Views contained will be arranged
-ConstraintLayout
-The standard layout for all uses. Views are constrained to each other in a variety of ways to allow for dynamic and sensible layouts
-"RelativeLayout" is an outdated version of this
-LinearLayout
-All Views are organized either horizontally or vertically. Nice and simple, with the added functionality of evenly spacing the Views to fill up the space
-GridLayout
-CoordinatorLayout
+#### Programmatically Updating Views
+For this part, add a **Button** whose top is constrained to the bottom of our EditText, and whose sides are constrained to the sides of the EditText, centering it. Now that we have a button, let's make it do something by writing some actual code! First, we need to get our Views from the `activity_main.xml` file into `MainActivity.java`. In our `onCreate()` method, we see the line `setContentView(R.layout.activity_main);` - signaling to us that the two files are now linked. We'll access anything in the `res` directory with `R`. On the line after setContentView, assuming your EditText's id is `editText`, add the following line (you may have to hit `Alt + Enter` to import the EditText class after typing this):
 
-Layout Files:
-Layout files are XML files that describe how Views will be initialized. It is possible to create them in the Java files, but typically the layout files are in the res folder.
-Android Studio has a handy visual editor that lets you add Views to your layout file and edit their starting properties, but sometimes it's faster to edit in the XML.
+```java
+EditText editText = findViewById(R.id.editText)
+```
 
-Activities:
-For now, you can think of an activity as essentially one screen in Android (this gets more inaccurate the more you learn about Android), and typically corresponds to one layout file. This is where we handle the logic for the screen. 
-In addition to what happens while you're in this Activity, there are also several methods called at different points in the lifecycle.
+**findViewById** returns some type of View, and is fetched using `R.id.whatever`. If we type out `editText.` and look at the autocomplete results, we can see the associated methods, like `getText()` and `setText()`. Many of these methods will be not bolded, since they are methods of a parent class. Let's go ahead and add the button on the next line.
+
+Now we'll go ahead and make the button do something by giving it an `OnClickListener`. Type out `button.setOnClickListener(new OnCli...`, and as you type, you should see an autocomplete option for View.OnClickListener. If you hit enter as this autocomplete option is showing, it will result in this:
+
+```java
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+    }
+});
+```
+
+What we see here is effectively a lambda - when the button is clicked, it will execute whatever is in this onClick method. For example, let's add the code `editText.setText("YOUR TEXT HERE");` inside the onClick method, and clicking the button will automatically fill out the editText with your text. OnClickListeners can be added to any View, but unlike the button class, many do not have the `clickable` attribute enabled by default, something you'll have to do manually.
+
+#### Side note: String resources
+Just as we have layout resources and drawable resources, we also have string resources. String resources are stored in `res/values/strings.xml` and should be used whenever a string is going to be shown to the user (so not an internal string used by code.) These are good practice, since for bigger apps this makes translations much easier. If you're following along, you'll notice that "YOUR TEXT HERE" is highlighted in yellow, and hovering over it will tell you Android Studio wants you to use a string resource. Whenever something like this happens, hitting `Alt + Enter` will usually bring up an option to autofix it. Selecting "Extract string resource" will ask you what you want the string's id to be and change it for you, getting rid of the annoying highlight and cleaning up your code!
+
+### Activities
+For now, you can think of an activity as essentially one screen in Android (this gets more inaccurate the more you learn about Android), and typically corresponds to one layout file. This is where we handle the logic for the screen. Outside of your interactions with the Activity, it has a lifecycle with several interface methods to execute certain behavior at different points of its lifecycle.
 
 Activity Lifecycle:
 Note that when an Activity starts, onCreate(), onStart(), and onResume() are all called before it starts running.
