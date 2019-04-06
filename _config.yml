@@ -41,6 +41,13 @@ defaults:
     values:
       layout: "post"
       permalink: "/:categories/:title"
+  
+  -
+    scope:
+      path: "artificial_intelligence/_posts"
+    values:
+      layout: "post"
+      permalink: "/:categories/:title"
 
 # header_pages:
 #   - ios.html
